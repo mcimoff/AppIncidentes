@@ -1,0 +1,11 @@
+use('incidentes2');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+db.incidentes2.drop();
+
+// Insert a few documents into the sales collection.
+db.incidentes2.insertMany([
+{"nroTicket": 1, "titulo": "Lentitud Notebook", "descripcionUsuario": "Nombre maquina: g100603sv010, presenta lentitud al iniciar sesion, demorandose 10 minutos aprox.", "nombreGrupo": "", "ubicacion": "Administracion", "afectado": "Raul Mendez", "especialista": "", "estadoActual": "Abierto", 
+  "actividades": {"fechaYhora": new Date('2022-10-02T08:00:00Z'), "tituloActividad": "Creacion de Ticket", "datos": "Creacion de Ticket"}, "fechaSolucion": ""}
+  ]);
