@@ -1,0 +1,27 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('incidentes');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+db.ubicacion.drop();
+
+// Insert a few documents into the sales collection.
+db.ubicacion.insertMany([
+  { '_id': 1,'unidadnegocio': {'unidaddenegocio' : 'kiosko24hs'}, 'nombre': 'Oficina central'},
+  { '_id': 2,'unidadnegocio': {'unidaddenegocio' : 'kiosko24hs'}, 'nombre': 'Sucursal Belgrano'},
+  { '_id': 3,'unidadnegocio': {'unidaddenegocio' : 'Farmacia'}, 'nombre': 'Sucursal Belgrano'},
+  { '_id': 4,'unidadnegocio': {'unidaddenegocio' : 'Almacen'}, 'nombre': 'Almacen 1'},
+  { '_id': 5,'unidadnegocio': {'unidaddenegocio' : 'Fábrica'}, 'nombre': 'Fábrica interior'},
+  { '_id': 6,'unidadnegocio': {'unidaddenegocio' : 'Farmacia'}, 'nombre': 'Oficina central'},
+  { '_id': 7,'unidadnegocio': {'unidaddenegocio' : 'kiosko24hs'}, 'nombre': 'Sucursal Palermo'},
+  { '_id': 8,'unidadnegocio': {'unidaddenegocio' : 'Farmacia'}, 'nombre': 'Sucursal Palermo'},
+  { '_id': 9,'unidadnegocio': {'unidaddenegocio' : 'Almacen'}, 'nombre': 'Almacen 2'},
+  { '_id': 10,'unidadnegocio': {'unidaddenegocio' : 'Fábrica'}, 'nombre': 'Fábrica central'},
+]);
+
+
