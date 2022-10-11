@@ -12,4 +12,8 @@ router.delete('/borrarIncidente/:id', async(req,res) =>{
     res.json(incidente);
 })
 
+router.get('/titulos', async(req, res) => {
+  res.json(await controller.getTitulos());
+});
+
 module.exports = router;
