@@ -9,4 +9,8 @@ async function borrarIncidente(id){
     return incidentes.borrarIncidente(id);
 }
 
-module.exports = {getIncidentes, borrarIncidente};
+async function getIncidenteID(id){
+    return incidentes.getIncidenteID(id);
+}
+
+module.exports = {getIncidentes, borrarIncidente,getIncidenteID};

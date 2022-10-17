@@ -1,7 +1,9 @@
 const conexion = require('./connection');
 const DATABASE = 'incidentes';
 const INCIDENTES = 'incidentes';
-const objectId = require('mongodb').ObjectId
+const objectId = require('mongodb').ObjectId;
+const { ObjectID } = require('bson');
+
 
 
 async function getIncidentes(){
@@ -14,6 +16,25 @@ async function getIncidentes(){
     return incidentes;                   
 }
 
+async function getIncidenteID(id) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({_id: id})
+        .toArray();
+    return incidente;
+}
+
+async function addIncidente(incidente) {
+    const conectiondb = await conexion.getConnection();
+    const result = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .insertOne(incidente);
+    return result;
+}
+
 async function borrarIncidente(id){
     const connectiondb = await conexion.getConnection();
     const incidente = await connectiondb
@@ -24,4 +45,4 @@ async function borrarIncidente(id){
     return incidente; 
 }
 
-module.exports = {getIncidentes, borrarIncidente};
+module.exports = {getIncidentes, borrarIncidente,getIncidenteID, addIncidente};
