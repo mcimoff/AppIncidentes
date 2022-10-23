@@ -4,6 +4,15 @@ const INCIDENTES = 'incidentes';
 const objectId = require('mongodb').ObjectId
 
 
+async function getIncidente(id){
+    const conectiondb = await conexion.getConnection()
+    const incidente = await conectiondb
+                      .db(DATABASE)
+                      .collection(INCIDENTES)
+                      .find({_id: new objectId(id)})
+                      .toArray();
+}
+
 async function getIncidentes(){
     const conectiondb = await conexion.getConnection()
     const incidentes = await conectiondb
@@ -24,4 +33,16 @@ async function borrarIncidente(id){
     return incidente; 
 }
 
-module.exports = {getIncidentes, borrarIncidente};
+async function borrarIncidentes(){
+    const connectiondb = await conexion.getConnection();
+    const incidentes = await connectiondb
+                     .db(DATABASE)
+                     .collection(INCIDENTES)
+                     .deleteMany();
+                     
+    return incidentes; 
+}
+
+
+
+module.exports = {getIncidentes, borrarIncidente,borrarIncidentes};
