@@ -16,7 +16,6 @@ router.delete('/borrarIncidente/:id', async(req,res) =>{
 router.get('/incidenteXID/:id', async(req,res) =>{
   const incidente = await data.getIncidenteID(parseInt(req.params.id));
   res.json(incidente);
-  
 })
 
 router.post('/nuevoIncidente', async (req, res) => {

@@ -1,0 +1,36 @@
+const conexion = require('./connection');
+const DATABASE = 'incidentes';
+const USUARIO = 'usuario';
+const objectId = require('mongodb').ObjectId;
+const { ObjectID } = require('bson');
+
+async function getUsuarios(){
+    const conectiondb = await conexion.getConnection()
+    const incidentes = await conectiondb
+                       .db(DATABASE)
+                       .collection(USUARIO)
+                       .find()
+                       .toArray()
+    return incidentes;                   
+}
+
+async function addUsuario(usuario) {
+    const conectiondb = await conexion.getConnection();
+    const result = await conectiondb
+        .db(DATABASE)
+        .collection(USUARIO)
+        .insertOne(usuario);
+    return result;
+}
+
+async function getUsuarioXCorreo(email) {
+    const conectiondb = await conexion.getConnection();
+    const usuario = await conectiondb
+        .db(DATABASE)
+        .collection(USUARIO)
+        .find({email: email})
+        .toArray();
+    return usuario;
+}
+
+module.exports = {addUsuario, getUsuarios,getUsuarioXCorreo};
