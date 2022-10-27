@@ -45,4 +45,16 @@ async function borrarIncidente(id){
     return incidente; 
 }
 
-module.exports = {getIncidentes, borrarIncidente,getIncidenteID, addIncidente};
+async function borrarIncidentes(){
+    const connectiondb = await conexion.getConnection();
+    const incidentes = await connectiondb
+                     .db(DATABASE)
+                     .collection(INCIDENTES)
+                     .deleteMany();
+                     
+    return incidentes; 
+}
+
+
+
+module.exports = {getIncidente,getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente};

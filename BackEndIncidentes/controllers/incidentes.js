@@ -1,5 +1,8 @@
 const incidentes = require('../data/incidentes');
 
+async function getIncidente(id){
+    return incidentes.getIncidente(id);
+}
 
 async function getIncidentes(){
     return incidentes.getIncidentes();
