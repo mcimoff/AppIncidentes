@@ -57,4 +57,4 @@ async function borrarIncidentes(){
 
 
 
-module.exports = {getIncidente,getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente};
+module.exports = {getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente};
