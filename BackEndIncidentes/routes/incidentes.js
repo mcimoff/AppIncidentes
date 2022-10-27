@@ -12,14 +12,14 @@ router.delete('/borrarIncidente/:id', async(req,res) =>{
     res.json(incidente);
 })
 
-router-this.delete('/borrarIncidentes', async(req,res) =>{
+router.delete('/borrarIncidentes', async(req,res) =>{
   const incidentes = await controller.borrarIncidentes();
   res.json(incidentes)
 })
 
 router.get('/:id', async(req,res) =>{
   const incidente = await controller.getIncidente(req.params.id);
-  res.json(reserva);
+  res.json(incidente);
 })
 
 module.exports = router;
