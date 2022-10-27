@@ -13,15 +13,10 @@ router.delete('/borrarIncidente/:id', async(req,res) =>{
     res.json(incidente);
 })
 
-router.delete('/borrarIncidentes', async(req,res) =>{
-  const incidentes = await controller.borrarIncidentes();
-  res.json(incidentes)
-})
-
-router.get('/:id', async(req,res) =>{
-  const incidente = await controller.getIncidente(req.params.id);
-  res.json(incidente);
-})
+// router.delete('/borrarIncidentes', async(req,res) =>{
+//   const incidentes = await controller.borrarIncidentes();
+//   res.json(incidentes)
+// })
 
 router.get('/incidenteXID/:id', async(req,res) =>{
   const incidente = await data.getIncidenteID(parseInt(req.params.id));
