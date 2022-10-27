@@ -1,27 +1,26 @@
-const {objectId} = require('mongodb');
-const conexion = require('./conexion');
+const conexion = require('./connection');
 const DATABASE = 'incidentes';
-const USUARIOS = 'usuarios';
+const USUARIOS = 'Usuarios';
 const objectId = require('mongodb').ObjectId;
 
 
 async function getUsuarios(){
-    const connectdb = await connection.getConnection();
-
-    const users = await connectdb.db(DATABASE)
-                                 .collection(USUARIOS)
-                                 .find()
-                                 .toArray();
+    const connectdb = await conexion.getConnection();
+    const users = await connectdb
+                  .db(DATABASE)
+                  .collection(USUARIOS)
+                  .find()
+                  .toArray();
     return users;
     
 }
 
 async function getUsuario(id){
-    const connectdb = await connection.getConnection();
+    const connectdb = await conexion.getConnection();
 
     const users = await connectdb.db(DATABASE)
                                  .collection(USUARIOS)
-                                 .find({_id: new objectId(id)})
+                                 .find({_id: new objectId})
                                  .toArray();
     return users;
     
