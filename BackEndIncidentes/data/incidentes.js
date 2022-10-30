@@ -54,7 +54,19 @@ async function borrarIncidentes(){
                      
     return incidentes; 
 }
+async function obtenerultimoid() {
+    const conectiondb = await conexion.getConnection()
+    const incidente = await conectiondb
+                       .db(DATABASE)
+                       .collection(INCIDENTES)
+                       .find()                       
+                       .sort({$natural:-1})
+                       .limit(1)
+                       .toArray()
+
+    return incidente;      
+}
 
 
 
-module.exports = {getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente};
+module.exports = {getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid};

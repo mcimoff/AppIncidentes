@@ -29,4 +29,8 @@ router.post('/nuevoIncidente', async (req, res) => {
   res.json(result);
 });
 
+router.get('/obtenerultimoid', async(req,res) =>{
+  res.json(await data.obtenerultimoid());
+})
+
 module.exports = router;
