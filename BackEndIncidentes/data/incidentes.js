@@ -26,6 +26,19 @@ async function getIncidenteID(id) {
     return incidente;
 }
 
+async function getIncidenteXArea(area) {
+    const conectiondb = await conexion.getConnection();
+    console.log(area);
+    const incidente = await conectiondb
+           
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"afectado.area.area" : area})
+        .toArray();
+        console.log(incidente);
+    return incidente;
+}
+
 async function addIncidente(incidente) {
     const conectiondb = await conexion.getConnection();
     const result = await conectiondb
@@ -69,4 +82,4 @@ async function obtenerultimoid() {
 
 
 
-module.exports = {getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid};
+module.exports = {getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea};

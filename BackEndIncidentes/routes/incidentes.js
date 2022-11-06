@@ -33,4 +33,10 @@ router.get('/obtenerultimoid', async(req,res) =>{
   res.json(await data.obtenerultimoid());
 })
 
+router.get('/incidenteXArea/:area', async(req,res) =>{
+
+  const incidente = await data.getIncidenteXArea(req.params.area);
+  res.json(incidente);
+})
+
 module.exports = router;
