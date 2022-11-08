@@ -28,14 +28,11 @@ async function getIncidenteID(id) {
 
 async function getIncidenteXArea(area) {
     const conectiondb = await conexion.getConnection();
-    console.log(area);
-    const incidente = await conectiondb
-           
+      const incidente = await conectiondb
         .db(DATABASE)
         .collection(INCIDENTES)
         .find({"afectado.area.area" : area})
         .toArray();
-        console.log(incidente);
     return incidente;
 }
 
