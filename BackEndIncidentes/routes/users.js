@@ -1,19 +1,40 @@
-var express = require('express');
-var router = express.Router();
-const controller = require('../controllers/users')
+// const { firebase, admin } = require('../fbConfig')
 
-/* GET users listing. */
-router.get('/usuarios', async(req, res) => {
-  res.json(await controller.getUsuarios());
-});
+// exports.login = (req, res) => {
+//     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
+//     .then(function () {
+//          firebase.auth().currentUser.getIdToken(true).then(function          (idToken){
+//                 res.send(idToken)
+//                 res.end()
+//              }).catch(function (error) {
+//                  //Me falta tratar el error
+//                  console.log("No tengo token")
+//              });
+//     }).catch(function (error) {
+          
+//                  //Me falta tratar el error
+//           console.log("No autenticó");
+//     });
+//     }
 
-
-router.get('/:id', async(req,res) =>{
-  const usuario = await controller.getUsuario(req.params.id);
-  res.json(usuario)
-})
-
-
-
-
-module.exports = router;
+//     exports.isAuth = (req, res) => {
+//       var user = firebase.auth().currentUser;
+//       if (user) {
+//           user.getIdToken(true).then(function (idToken) {
+//               res.send(idToken)
+//               res.end()
+//           }).catch(function (error) {
+//             console.log("Me falta este error 1");
+//             //Me falta tratar el error
+//           });
+//       } else {
+//           //Handle error
+//           console.log("Me falta este error 2");
+//                  //Me falta tratar el error
+//       }
+//   }
+  
+//   exports.userBasedFunc = (req, res) =>{
+//       //Trae datos de usuario
+//       console.log(req.user)
+//   }

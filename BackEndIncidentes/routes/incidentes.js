@@ -3,8 +3,9 @@ var router = express.Router();
 var controller = require('../controllers/incidentes')
 const bodyParser = require('body-parser');
 const data = require('../data/incidentes');
+const authUser = require('../middleware/authUser')
 
-router.get('/', async(req, res) => {
+router.get('/', authUser.checkIfAuthenticated, async(req, res) => {
   res.json(await controller.getIncidentes());
 });
 

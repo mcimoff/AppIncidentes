@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
 const data = require('../data/usuarios');
+const check = require('../middleware/authUser')
+//import {checkIfAuthenticated} from '../middleware/authUser';
 
-router.get('/', async(req, res) => {
+router.get('/', check.checkIfAuthenticated, async(req, res) => {
   res.json(await data.getUsuarios());
 });
 

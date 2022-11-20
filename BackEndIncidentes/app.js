@@ -1,16 +1,24 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const incidentesRouter = require('./routes/incidentes')
 const usuariosRouter = require('./routes/usuarios')
 
-var app = express();
-var cors = require('cors')
+const app = express();
+const cors = require('cors')
+const authUser = require('./middleware/authUser')
+// const fbAuth = require('./middleware/authUser')
+// const {
+//    login,
+//    userBasedFunc
+// } = require('./routes/users')
+//app.post('/login', login);
+//app.get('/userBasedFunc', fbAuth, userBasedFunc);
 
 app.use(cors())
 
@@ -25,9 +33,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', authUser.checkIfAuthenticated, usuariosRouter);
 app.use('/incidentes',incidentesRouter);
-app.use('/usuarios',usuariosRouter);
+app.use('/usuarios',authUser.checkIfAuthenticated, usuariosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
