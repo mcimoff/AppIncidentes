@@ -20,8 +20,8 @@ const getAuthToken = ( req, res, next) => {
 const checkIfAuthenticated = (req, res, next) =>{
    getAuthToken(req, res, async() => {
       try{
-         const {authToken} = req;
-         const userInfo = await admin.auth().verifyIdToken(authToken);
+         const {token} = req;
+         const userInfo = await admin.auth().verifyIdToken(token);
          req.authId = userInfo.uid;
          console.log("pasé por acá")
          return next(); 
@@ -33,4 +33,4 @@ const checkIfAuthenticated = (req, res, next) =>{
    
 }
 
-module.exports =  {checkIfAuthenticated} ;
+module.exports =  checkIfAuthenticated ;

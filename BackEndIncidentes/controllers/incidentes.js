@@ -1,8 +1,8 @@
 const incidentes = require('../data/incidentes');
 
 
-async function getIncidentes(){
-    return incidentes.getIncidentes();
+async function getIncidentes(id){
+    return incidentes.getIncidentes(id);
 }
 
 async function borrarIncidente(id){

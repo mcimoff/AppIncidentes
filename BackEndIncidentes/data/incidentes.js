@@ -6,12 +6,12 @@ const { ObjectID } = require('bson');
 
 
 
-async function getIncidentes(){
+async function getIncidentes(id){
     const conectiondb = await conexion.getConnection()
     const incidentes = await conectiondb
                        .db(DATABASE)
                        .collection(INCIDENTES)
-                       .find()
+                       .find({"afectado._id" : id})
                        .toArray()
     return incidentes;                   
 }

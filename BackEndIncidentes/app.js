@@ -33,9 +33,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', authUser.checkIfAuthenticated, usuariosRouter);
-app.use('/incidentes',incidentesRouter);
-app.use('/usuarios',authUser.checkIfAuthenticated, usuariosRouter);
+//app.use('/users', authUser.checkIfAuthenticated, usuariosRouter);
+app.use('/incidentes', incidentesRouter);
+//app.use('/usuarios',authUser.checkIfAuthenticated, usuariosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
