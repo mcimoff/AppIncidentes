@@ -26,15 +26,6 @@ async function getIncidenteID(id) {
     return incidente;
 }
 
-async function getIncidenteXArea(area) {
-    const conectiondb = await conexion.getConnection();
-      const incidente = await conectiondb
-        .db(DATABASE)
-        .collection(INCIDENTES)
-        .find({"afectado.area.area" : area})
-        .toArray();
-    return incidente;
-}
 
 async function addIncidente(incidente) {
     const conectiondb = await conexion.getConnection();
@@ -77,6 +68,60 @@ async function obtenerultimoid() {
     return incidente;      
 }
 
+async function getIncidenteXArea(area) {
+    const conectiondb = await conexion.getConnection();
+      const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"afectado.area.area" : area})
+        .toArray();
+    return incidente;
+}
+
+async function getIncidenteUsuarioID(id) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"afectado._id" : id})
+        .toArray();
+        console.log(incidente);
+    return incidente;
+}
+
+async function getIncidentesAbiertos(id) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"estadoActual": "Abierto","afectado._id" : id})
+        .toArray();
+        console.log(incidente);
+    return incidente;
+}
+
+async function getIncidentesResueltos(id) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"estadoActual": "Resuelto","afectado._id" : id})
+        .toArray();
+        console.log(incidente);
+    return incidente;
+}
+
+async function getIncidentesSinAsignar(id) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"especialista": {},"afectado._id" : id})
+        .toArray();
+        console.log(incidente);
+    return incidente;
+}
 
 
-module.exports = {getIncidentes, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea};
+
+module.exports = {getIncidentes,getIncidentesAbiertos,getIncidentesSinAsignar, getIncidentesResueltos, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea, getIncidenteUsuarioID};

@@ -34,8 +34,29 @@ router.get('/obtenerultimoid', async(req,res) =>{
 })
 
 router.get('/incidenteXArea/:area', async(req,res) =>{
-
   const incidente = await data.getIncidenteXArea(req.params.area);
+  res.json(incidente);
+})
+
+router.get('/incidenteXUsuarioid/:id', async(req,res) =>{
+  const incidente = await data.getIncidenteUsuarioID(req.params.id);
+
+  res.json(incidente);
+})
+
+router.get('/incidenteAbierto/:id', async(req,res) =>{
+  const incidente = await data.getIncidentesAbiertos(req.params.id);
+
+  res.json(incidente);
+})
+
+router.get('/incidenteResuelto/:id', async(req,res) =>{
+  const incidente = await data.getIncidentesResueltos(req.params.id);
+  res.json(incidente);
+})
+
+router.get('/incidenteSinAsignar/:id', async(req,res) =>{
+  const incidente = await data.getIncidentesSinAsignar(req.params.id);
   res.json(incidente);
 })
 
