@@ -9,7 +9,7 @@ db.incidentes.insertMany([
 {"_id": 1,"fechaCreacion": new Date('2022-10-02T08:00:00'), 
   "titulo": "Lentitud Notebook", 
   "descripcionUsuario": "Nombre maquina: g100603sv010, presenta lentitud al iniciar sesion, demorandose 10 minutos aprox.",
-  "areaResolutora": {},  
+  "areaResolutora": "SoporteAdministracion",  
   
   "afectado": { '_id': 5489, 'nombre': 'Juan', 'apellido': 'Perez', 'pais': 'Argentina',  
   'area': {'area' : 'RRHH', 'ubicacion' : {'ubicacion' : 'Oficina Central'}}, 

@@ -13,11 +13,6 @@ router.delete('/borrarIncidente/:id', async(req,res) =>{
     res.json(incidente);
 })
 
-// router.delete('/borrarIncidentes', async(req,res) =>{
-//   const incidentes = await controller.borrarIncidentes();
-//   res.json(incidentes)
-// })
-
 router.get('/incidenteXID/:id', async(req,res) =>{
   const incidente = await data.getIncidenteID(parseInt(req.params.id));
   res.json(incidente);
@@ -59,5 +54,23 @@ router.get('/incidenteSinAsignar/:id', async(req,res) =>{
   const incidente = await data.getIncidentesSinAsignar(req.params.id);
   res.json(incidente);
 })
+
+router.get('/incidenteXAreaResolutora/:areaResolutora', async(req,res) =>{
+  console.log(req.params.areaResolutora);
+  const incidente = await data.getIncidenteXAreaResolutor(req.params.areaResolutora);
+  res.json(incidente);
+})
+
+router.put('/incidenteAsignado', async (req, res) => {
+  const incidente = req.body;
+  const result = await data.incidenteConResolutor(incidente);
+  res.json(result);
+});
+
+router.patch('/resolverIncidente/:id', async (req, res) => {
+  const id =  req.params.id.trim();
+  const result = await data.resolverIncidente(id);
+  res.json(result);
+});
 
 module.exports = router;

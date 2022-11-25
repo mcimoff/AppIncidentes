@@ -13,5 +13,5 @@ db.usuario.drop();
 // Insert a few documents into the sales collection.
 db.usuario.insertMany([
   { '_id': 5489, 'email': 'juanperez@gmail.com', 'nombre': 'Juan', 'apellido': 'Perez', 'pais': 'Argentina',  'area': {'area' : 'RRHH', 'ubicacion' : {'ubicacion' : 'Oficina Central'}}, 'unidadnegocio': {'unidadnegocio' : 'kiosko24hs'}, 'celuar': 1125256898, 'interno': 5862, 'incidentes' : [{}], 'esVip': true, 'puesto': 'Gerente','esReesolutor': false},
-  { '_id': 6238, 'email': 'MariaFernandez@gmail.com', 'nombre': 'María', 'apellido': 'Fernandez', 'pais': 'Argentina',  'area': {'area' : 'Sistemas', 'ubicacion' : {'ubicacion' : 'Oficina Central'}}, 'unidadnegocio': {'unidadnegocio' : 'kiosko24hs'}, 'celuar': 1125689235, 'interno': 4522, 'incidentes' : [{}], 'esVip': false, 'puesto': 'Tecnica', 'esReesolutor': false},
+  { '_id': 6238, 'email': 'MariaFernandez@gmail.com', 'nombre': 'María', 'apellido': 'Fernandez', 'pais': 'Argentina',  'area': {'area' : 'SoporteAdministracion', 'ubicacion' : {'ubicacion' : 'Oficina Central'}}, 'unidadnegocio': {'unidadnegocio' : 'kiosko24hs'}, 'celuar': 1125689235, 'interno': 4522, 'incidentes' : [{}], 'esVip': false, 'puesto': 'Tecnica', 'esReesolutor': true},
 ]);
