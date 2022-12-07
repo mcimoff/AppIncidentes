@@ -28,8 +28,7 @@ async function getUsuarioXCorreo(email) {
     const usuario = await conectiondb
         .db(DATABASE)
         .collection(USUARIO)
-        .find({email: email})
-        .toArray();
+        .findOne({email: email})
     return usuario;
 }
 
