@@ -32,4 +32,14 @@ async function getUsuarioXCorreo(email) {
     return usuario;
 }
 
-module.exports = {addUsuario, getUsuarios,getUsuarioXCorreo};
+async function getUsuarioXArea(area) {
+    const conectiondb = await conexion.getConnection();
+    const usuario = await conectiondb
+        .db(DATABASE)
+        .collection(USUARIO)
+        .find({"area.area" : area})
+        .toArray();
+    return usuario;
+}
+
+module.exports = {addUsuario,getUsuarioXArea, getUsuarios,getUsuarioXCorreo};

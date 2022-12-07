@@ -15,8 +15,13 @@ router.post('/nuevousuario', async (req, res) => {
 });
 
 router.get('/getusuario/:email', async(req,res) =>{
-  console.log(req.params.email);
   const usuario = await data.getUsuarioXCorreo(req.params.email);
+  res.json(usuario);
+})
+
+router.get('/getusuarioxarea/:area', async(req,res) =>{
+  console.log(req.params.area);
+  const usuario = await data.getUsuarioXArea(req.params.area);
   res.json(usuario);
 })
 

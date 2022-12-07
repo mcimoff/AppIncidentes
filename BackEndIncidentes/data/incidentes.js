@@ -123,5 +123,43 @@ async function getIncidentesSinAsignar(id) {
 }
 
 
+async function getIncidenteXAreaResolutor(arearesoltor) {
+    const conectiondb = await conexion.getConnection();
+      const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"areaResolutora" : arearesoltor})
+        .toArray();
+    return incidente;
+}
 
-module.exports = {getIncidentes,getIncidentesAbiertos,getIncidentesSinAsignar, getIncidentesResueltos, borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea, getIncidenteUsuarioID};
+async function incidenteConResolutor(incidente) {
+    const conectiondb = await conexion.getConnection();
+    const result = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .updateOne({_id: incidente._id},{
+            $set: incidente
+        })
+    return result;
+}
+
+async function resolverIncidente(id){
+    const clientMongo = await conexion.getConnection();
+    const result = await clientMongo
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .updateOne({_id: parseInt(id)},{
+            $set: {estadoActual: 'Resuelto',
+                actividades: {
+                    fechaYhora: new Date(),
+                    tituloActividad: 'Resuelto',
+                    comentarios: 'Resuelto'
+                },
+
+                fecharesolucion: new Date()}
+        })
+        return result;
+    }
+
+module.exports = {getIncidentes, resolverIncidente,getIncidentesAbiertos,getIncidentesSinAsignar, getIncidentesResueltos, incidenteConResolutor,borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea, getIncidenteUsuarioID, getIncidenteXAreaResolutor};
