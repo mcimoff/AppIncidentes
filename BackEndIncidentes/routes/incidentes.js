@@ -39,14 +39,22 @@ router.get('/incidenteXUsuarioid/:id', async(req,res) =>{
   res.json(incidente);
 })
 
-router.get('/incidenteAbierto/:id', async(req,res) =>{
-  const incidente = await data.getIncidentesAbiertos(req.params.id);
+// router.get('/incidentesAbiertos', async(req,res) =>{
+//   res.json(await data.getIncidentesAbiertos());
+// })
+
+router.get('/incidentesAbiertosXID/:id', async(req,res) =>{
+  const incidente = await data.getIncidentesAbiertosXID(req.params.id);
 
   res.json(incidente);
 })
 
-router.get('/incidenteResuelto/:id', async(req,res) =>{
-  const incidente = await data.getIncidentesResueltos(req.params.id);
+// router.get('/incidentesResueltos', async(req,res) =>{
+//   res.json(await data.getIncidentesResueltos());
+// })
+
+router.get('/incidentesResueltosXID/:id', async(req,res) =>{
+  const incidente = await data.getIncidentesResueltosXID(req.params.id);
   res.json(incidente);
 })
 
@@ -58,6 +66,18 @@ router.get('/incidenteSinAsignar/:id', async(req,res) =>{
 router.get('/incidenteXAreaResolutora/:areaResolutora', async(req,res) =>{
   console.log(req.params.areaResolutora);
   const incidente = await data.getIncidenteXAreaResolutor(req.params.areaResolutora);
+  res.json(incidente);
+})
+
+router.get('/incidenteXAreaResolutoraAbiertos/:areaResolutora', async(req,res) =>{
+  console.log(req.params.areaResolutora);
+  const incidente = await data.getIncidenteXAreaResolutorAbiertos(req.params.areaResolutora);
+  res.json(incidente);
+})
+
+router.get('/incidenteXAreaResolutoraResueltos/:areaResolutora', async(req,res) =>{
+  console.log(req.params.areaResolutora);
+  const incidente = await data.getIncidenteXAreaResolutorResueltos(req.params.areaResolutora);
   res.json(incidente);
 })
 

@@ -23,6 +23,10 @@ async function addUsuario(usuario) {
     return result;
 }
 
+// async function getProfile(token) {
+
+// }
+
 async function getUsuarioXCorreo(email) {
     const conectiondb = await conexion.getConnection();
     const usuario = await conectiondb
