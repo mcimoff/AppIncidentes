@@ -14,7 +14,8 @@ db.area.drop();
 db.area.insertMany([
   { '_id': 1, 'nombre': 'RRHH', 'ubicacion': [{'nombre' : 'Oficina central'},{'nombre' : 'Sucursal Belgrano'}]},
   { '_id': 2, 'nombre': 'Soporte', 'ubicacion': [{'nombre' : 'Oficina central'}]},
-
+  { '_id': 3, 'nombre': 'Redes', 'ubicacion': [{'nombre' : 'Oficina central'}]},
+  { '_id': 4, 'nombre': 'Supervisor', 'ubicacion': [{'nombre': 'Sucursal Belgrano'}]},
 ]);
 
 

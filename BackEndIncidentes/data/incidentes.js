@@ -26,6 +26,17 @@ async function getIncidenteID(id) {
     return incidente;
 }
 
+async function getIncidentePendienteID(id) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"especialista._id": id,
+            "estadoActual": "Abierto"})
+        .toArray();
+    return incidente;
+}
+
 
 async function addIncidente(incidente) {
     const conectiondb = await conexion.getConnection();
@@ -73,7 +84,7 @@ async function getIncidenteXArea(area) {
       const incidente = await conectiondb
         .db(DATABASE)
         .collection(INCIDENTES)
-        .find({"afectado.area.area" : area})
+        .find({"areaResolutora" : area})
         .toArray();
     return incidente;
 }
@@ -83,7 +94,7 @@ async function getIncidenteUsuarioID(id) {
     const incidente = await conectiondb
         .db(DATABASE)
         .collection(INCIDENTES)
-        .find({"afectado._id" : id})
+        .find({"afectado._id": id})
         .toArray();
         console.log(incidente);
     return incidente;
@@ -95,6 +106,18 @@ async function getIncidentesAbiertos(id) {
         .db(DATABASE)
         .collection(INCIDENTES)
         .find({"estadoActual": "Abierto","afectado._id" : id})
+        .toArray();
+        console.log(incidente);
+    return incidente;
+}
+
+async function getIncidentesAbiertosArea(areaResolutora) {
+    const conectiondb = await conexion.getConnection();
+    const incidente = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({"estadoActual": "Abierto",
+            "areaResolutora" : areaResolutora})
         .toArray();
         console.log(incidente);
     return incidente;
@@ -162,4 +185,4 @@ async function resolverIncidente(id){
         return result;
     }
 
-module.exports = {getIncidentes, resolverIncidente,getIncidentesAbiertos,getIncidentesSinAsignar, getIncidentesResueltos, incidenteConResolutor,borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea, getIncidenteUsuarioID, getIncidenteXAreaResolutor};
+module.exports = {getIncidentes, resolverIncidente,getIncidentesAbiertos,getIncidentesSinAsignar,getIncidentesAbiertosArea,  getIncidentesResueltos,getIncidentePendienteID, incidenteConResolutor,borrarIncidente,borrarIncidentes,getIncidenteID, addIncidente, obtenerultimoid,getIncidenteXArea, getIncidenteUsuarioID, getIncidenteXAreaResolutor};
