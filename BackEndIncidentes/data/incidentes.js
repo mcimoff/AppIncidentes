@@ -81,13 +81,28 @@ async function obtenerultimoid() {
 
 async function getIncidenteXArea(area) {
     const conectiondb = await conexion.getConnection();
-      const incidente = await conectiondb
+
+    // Primer intento: buscar por "areaResolutora"
+    let incidentes = await conectiondb
         .db(DATABASE)
         .collection(INCIDENTES)
-        .find({"areaResolutora" : area})
+        .find({ "areaResolutora": area })
         .toArray();
-    return incidente;
+
+    // Si no se encontraron resultados, buscar por "area.area"
+    if (incidentes.length === 0) {
+        incidentes = await conectiondb
+            .db(DATABASE)
+            .collection(INCIDENTES)
+            .find({ "afectado.area.area": area })
+            .toArray();
+        console.log(incidentes);
+        
+    }
+
+    return incidentes;
 }
+
 
 async function getIncidenteUsuarioID(id) {
     const conectiondb = await conexion.getConnection();
@@ -113,35 +128,70 @@ async function getIncidentesAbiertos(id) {
 
 async function getIncidentesAbiertosArea(areaResolutora) {
     const conectiondb = await conexion.getConnection();
-    const incidente = await conectiondb
+
+    // Primera búsqueda: buscar por "areaResolutora" y "estadoActual": "Abierto"
+    let incidentes = await conectiondb
         .db(DATABASE)
         .collection(INCIDENTES)
-        .find({"estadoActual": "Abierto",
-            "areaResolutora" : areaResolutora})
+        .find({
+            "estadoActual": "Abierto",
+            "areaResolutora": areaResolutora
+        })
         .toArray();
-        console.log(incidente);
-    return incidente;
+
+    // Si no se encontraron resultados, buscar en "afectado.area.area"
+    if (incidentes.length === 0) {
+        incidentes = await conectiondb
+            .db(DATABASE)
+            .collection(INCIDENTES)
+            .find({
+                "estadoActual": "Abierto",
+                "afectado.area.area": areaResolutora
+            })
+            .toArray();
+    }
+
+    return incidentes;
 }
 
-async function getIncidentesResueltos(id) {
+
+async function getIncidentesResueltos(areaResolutora) {
+    const conectiondb = await conexion.getConnection();
+
+    // Primera búsqueda: buscar por "areaResolutora" y "estadoActual": "Resuelto"
+    let incidentes = await conectiondb
+        .db(DATABASE)
+        .collection(INCIDENTES)
+        .find({
+            "estadoActual": "Resuelto",
+            "areaResolutora": areaResolutora
+        })
+        .toArray();
+
+    // Si no se encontraron resultados, buscar en "afectado.area.area"
+    if (incidentes.length === 0) {
+        incidentes = await conectiondb
+            .db(DATABASE)
+            .collection(INCIDENTES)
+            .find({
+                "estadoActual": "Resuelto",
+                "afectado.area.area": areaResolutora
+            })
+            .toArray();
+    }
+
+    console.log(incidentes);
+    return incidentes;
+}
+
+
+async function getIncidentesSinAsignar(areaResolutora) {
     const conectiondb = await conexion.getConnection();
     const incidente = await conectiondb
         .db(DATABASE)
         .collection(INCIDENTES)
-        .find({"estadoActual": "Resuelto","afectado._id" : id})
+        .find({"especialista": {},"areaResolutora" : areaResolutora})
         .toArray();
-        console.log(incidente);
-    return incidente;
-}
-
-async function getIncidentesSinAsignar(id) {
-    const conectiondb = await conexion.getConnection();
-    const incidente = await conectiondb
-        .db(DATABASE)
-        .collection(INCIDENTES)
-        .find({"especialista": {},"afectado._id" : id})
-        .toArray();
-        console.log(incidente);
     return incidente;
 }
 
